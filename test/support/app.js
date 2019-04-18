@@ -35,6 +35,20 @@ app.get('/querystring', (req, res) => {
   res.json(req.query);
 });
 
+app.get('/querystringdir/', (req, res) => {
+  res.json({
+    ...req.query,
+    dir: true
+  });
+});
+
+app.get('/querystringdir', (req, res) => {
+  res.json({
+    ...req.query,
+    dir: false
+  });
+});
+
 app.delete('/querystring', (req, res) => {
   res.json(req.query);
 });

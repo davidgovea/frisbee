@@ -199,6 +199,23 @@ test(
   }
 );
 
+test(
+  oneLine`
+    should not strip trailing slash in GET requests`,
+  async t => {
+    const api = new Frisbee(options);
+    const querystring = {
+      foo: 'bar'
+    };
+
+    const getDirRes = await api.get('/querystringdir/', {
+      body: querystring
+    });
+    t.is(getDirRes.body.foo, 'bar');
+    t.true(getDirRes.body.dir);
+  }
+);
+
 test('should return 404', async t => {
   const api = new Frisbee(options);
   const res = await api.get('/404');
